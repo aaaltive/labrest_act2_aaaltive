@@ -1,0 +1,57 @@
+openapi: "3.0.3"
+info:
+  title: "labrest_act2_aaaltive API"
+  description: "labrest_act2_aaaltive API"
+  version: "1.0.0"
+servers:
+  - url: "https://labrest_act2_aaaltive"
+paths:
+  /surveys:
+    get:
+      summary: "GET surveys"
+      operationId: "getSurvey"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Survey"
+components:
+  schemas:
+    Answer:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        answer:
+          type: "string"
+    SurveyItem:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        questionStem:
+          type: "string"
+        possAnsList:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Answer"
+        correctAns:
+          type: "string"
+    Survey:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        name:
+          type: "string"
+        sureveyItems:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SurveyItem"
